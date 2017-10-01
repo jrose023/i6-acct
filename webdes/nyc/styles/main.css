@@ -1,0 +1,131 @@
+/* CSS for the NYC website */
+
+/* ------- Background -------- */
+
+body {
+  background-color: white;
+  background-image: url("../images/nyc-seal.png");
+  background-size: 150px 150px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center top;
+}
+
+/* ------- Text -------- */
+
+h1, h2, h3, h4, h5, h6, th {
+  color: black;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.3em; /* this is a relative font size */
+  text-align: left;
+}
+
+p, ol, ul, td {
+  color: black;
+  font-family: Palatino, Times, serif;
+  font-size: 1em;
+  line-height: 1.4em;
+  text-align: left;
+}
+
+ul {
+  list-style: none;
+}
+
+/* HTML class as selector */
+.title {
+  font-size: 1.7em;
+}
+
+/* HTML ID as selector */
+#credit {
+  font-size: 0.7em;
+  text-align: center;
+}
+
+/* using the span element with a HTML classes */
+.nyc {text-transform: uppercase;}
+.boro {font-weight: bold;}
+
+/* ------- Thematic separation -------- */
+
+hr {
+  border: 0;
+  height: 1px;
+  background: orange;
+}
+
+/* ------- Links -------- */
+
+a:link, a:visited  {
+  text-decoration: underline;
+  color: black;
+}
+
+a:focus, a:hover {
+  color: black;
+  background: orange;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+a.heading:link, a.heading:visited {
+  text-decoration: none;
+}
+
+a.heading:hover {
+  background-color: orange;
+}
+
+a.heading:active {
+  background-color: LightGray;
+}
+
+/* ------- Table -------- */
+
+table {
+  width: 100%;
+}
+
+th {
+  height: 2.8em;
+}
+
+td {
+  padding: 8px;
+}
+
+tr.lighter {
+  background-color: #d3d3d3;
+}
+
+tr.darker {
+  background-color: #a3a3a3;
+}
+
+
+/* ------ Layout ------ */
+img{
+  /*border-style: solid;
+  border-width: 1px;
+  border-color: black;*/
+
+  border: 1px solid black;
+  margin-bottom: 40px;
+  padding:20px;
+  background-color: red;
+  /*background color adds color to padding */
+}
+
+ul{
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#main{ margin-top: 40px; }
+
+#footer{ padding-bottom: 10px; padding-top: 10px; }
+
+#container{ width: 80%;}

@@ -1,0 +1,50 @@
+body{
+  background-color: #F3F3F3;
+  font-family: Helvetica, sans-serif;
+}
+
+p{
+  font-family: Helvetica, sans-serif;
+  font-size: 1em;
+}
+
+h1, h2 {
+  font-family: Helvetica, sans-serif;
+  background: lightgray;
+}
+
+h3{
+  /*font-weight: normal;*/
+  font-size: 1.15em;
+}
+
+a:link{ color: #44AD9E;}
+a:visited{color: #42C5B5;}
+a:hover {color: #007264;}
+a:active{
+  color: black;
+  text-decoration: underline;
+}
+
+.fixed{
+  position: fixed;
+  top: 0;
+  right: 0;
+  opacity: .7;
+  padding: .20em;
+}
+
+#comment{ font-size: .5em; }
+
+table{ width: 75%; }
+th{
+  text-align: left;
+  padding-left: 3px;
+  height: 1.8em;
+}
+tr{ background-color: darkgray;}
+td{
+  background-color: LightGray;
+  padding: 6px;
+  padding-left: 3px;
+}

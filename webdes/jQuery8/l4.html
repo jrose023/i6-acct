@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Machine-Level: 4</title>
+  <link rel="icon"  href="images/favicon.ico">
+
+    <!-- Media query for narrow browser width -->
+    <link rel="stylesheet" media="only screen and (max-width: 550px)" href="styles/mobile.css">
+
+    <!-- Media query for medium browser width -->
+    <link rel="stylesheet" media="only screen and (min-width: 551px) and (max-width: 1110px)" href="styles/tablet.css">
+
+    <!-- Media query for full browser width -->
+    <link rel="stylesheet" media="only screen and (min-width: 1111px)" href="styles/desktop.css">
+
+    <!-- Prevent smartphones from scaling pages down -->
+    <meta name="viewport" content="initial-scale=1">
+</head>
+
+<body>
+  <div id="container">
+
+    <div id="nav">
+      <a href="index.html">
+      <img src="images/i7.gif" id="chip" alt="i7 chip" width="200" height="175">
+      <ul class="navlist">
+        <li>Home</a>  </li>
+        <li><a href="l12.html">Levels 1/2</a></li>
+        <li><a href="l3.html">Level 3</a></li>
+        <em><li><a href="l4.html">Level 4</a></li></em>
+        <li><a href="l5.html">Level 5</a></li>
+        <li class ="footer"> <a href="../index.html"> back to projects page </a></li>
+      </ul>
+    </div >     <!-- close #nav -->
+
+    <div id="info">
+      <div class="about">
+        <h1><a href="index.html">Machine-Level Representation of Programs</a></h1><button id="night"></button>
+        <h2>Level 4 </h2>
+          <p>Level 4 covers the machine-level representation of procedure calls--when one function passes control to another function. This involves the actual passing of control, the passing of data, memory management, then memory deallocation, storing return values and passing control back to the calling function. This also introduces discussion of the representation of the stack in assembly</p>
+
+      </div>       <!-- close .about  -->
+
+      <hr>
+      <div class="details">
+        <div class="col1">
+          <h3>The Stack</h3>
+          <p> Region of memory managed with stack discipline. The stack grows toward lower addresses. Register %rsp contains lowest stack address, or the address of the top element. The instruction <em>push src</em> fetches the source operand, decrements %rsp by 8, and writes the operand at the address given by %rsp. Similarly, <em>pop dest</em> reads the value at %rsp, increments %rsp by 8, and stores that value at the destination, which must be a register</p>
+          <img src="images/stack.png" srcset="images/stack-2x.png 2x" alt="stack" width="377" height="401" class="tallimage">
+
+          <h3> Function Calls: When P calls Q </h3>
+          <p> We use the stack to support procedure call and return: P is suspended and control moves to Q. A stack frame is setup on top of the stack for Q. That stack frame contains saved registers, local variables and arguments if Q is calling another function. Local storage is needed when there are not enough registers available, when a variable in HLL is referred to by its address, and for arrays, structures, etc.</p>
+          <img src="images/calls.png" srcset="images/calls-2x.png 2x" alt="function call stack" width="665" height="524" class="tallimage">
+
+
+          <p></p>
+        </div>
+        <div class="col2">
+          <h3>Registers Usage Convention</h3>
+          <p>P was our <em>caller</em> and Q the <em>callee</em>. When callee uses a register for temporary storage, the contents could be overwritten by Q. Instead we use the conventions of “Caller Saved” whereby the Caller saves temporary values in its frame before the call, and “Callee Saved” which saves temporary values in its frame before using, then restores them before returning to caller. As seen in the image, %rax is our return value that is caller-saved and can be modified by procedure. %rdi through %r9 are our arguments that are also caller-saved and can be modified. %r10 and %rll are temporary caller-saved values that can be modified.</p>
+          <p>Further, our callee-saved temporary registers are %rbx and %r12-14, which the callee must save and restore at end. %rbp is our base pointer that points to frame and can be mixed and matched, and %rsp, as we know is the stack pointer, which is a special form of callee-saved that is restored to original value upon exit from function.</p>
+          <img src="images/conventions.png" srcset="images/conventions-2x.png 2x" alt="Function call register conventions" width="367" height="356" class="tallimage">
+
+          <h3>Recursion Observations</h3>
+          <p> Recursion uses normal calling conventions and is handled without special consideration – Stack frames mean that each function call has private storage (Saved registers & local variables and saved return pointer). Register saving conventions prevent one function call from corrupting another’s data. Stack discipline follows call / return pattern: If P calls Q, then Q returns before P (LIFO). Also works for mutual recursion – P calls Q; Q calls P.</p>
+
+        </div>
+      </div>      <!-- close .details -->
+    </div>   <!-- close #info -->
+  </div>   <!-- close #container -->
+
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/jq.js"></script>
+</body>
+</html>

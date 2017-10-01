@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf.8">
+    <title> Data Visualizations</title>
+    <link rel="stylesheet" href="../main.css">
+  </head>
+
+  <body>
+    <h3 class="fixed">Using Python to Graph your Data</a></h3>
+
+    <div id="container">
+      <div id="header">
+        <h2> Assignment 3: Building Data Visualizations Using Python</h2>
+        <p id="bio">
+          Write at least one paragraph to describe what your graph shows. Can you draw any conclusions by learning from the data? Can you draw any conclusions about the integrity of the data? Who might find your graphs useful?
+        </p>
+      </div>
+      <div id = "info">
+        <p>
+          I retrieved this dataset,  <a href = "https://data.ny.gov/Economic-Development/Quarterly-Census-of-Employment-and-Wages-QCEW-Hist/ej35-turb/">Quarterly Census of Employment and Wages Historical Annual Data: 1975 - 2000</a>, from data.ny.gov.  It includes data about the average wages and average employment across several industries in New York State over 25 years. My data from the last assignment was limiting and didn't have enough data to make for an interesting analysis. This dataset, however, offers a very interesting view of employment in New York state, broken down by county. To scrub the data I made some simple changes such as removing unnecessary columns.
+        </p>
+        <p>
+          For this visualization, I only worked with the state-wide data. The first line chart shows a dramatic increase in Finance, Real Estate and Insurance wages over the 25 year timespan the dataset covers, with the other industries roughly following the same pattern in a general increase over time. What might have been a more interesting analysis is the comparison of employment in New York City versus the rest of the counties in New York, and I hope to return to that in a future assignment.
+        </p>
+        <p>
+          The limitations of this dataset come from the lumping of large subcategories with broad industries like "services," which I found vague and in many cases lacking inclusion. For instance, the <a href="https://www.osha.gov/pls/imis/sic_manual.html">Standard Industrial Classification System</a> outlines the 10 categories as seen in this visualization, but because these classifications were made some years ago, they fail to capture industries like those in technology.
+        </p>
+        <p>
+          Additionally, the dataset only covers the 25 years from 1975-2000, which, to the best of my knowledge, were relatively economically stable. The two largest crises since the Great Depression were the OPEC oil crisis in the early 1970s and the 2008 recession, both of which occurred outside of the timespan of this dataset, which makes it somewhat uninteresting, as seen in the nearly straight lines in the first graph.
+        </p>
+        <p>
+        </p>
+        <p>
+          <img src="part1_linechart.png" alt="Employment by Industry in NY State, 1975-2000" width="962.1" height="419.7">
+        </p>
+        <p>
+          <img src="part1_pie_employment.png" alt="Employment Breakdown by Industry in NY State, 1975"  width="579" height="461.4">
+          <img src="part1_pie_wages.png" alt="Wage Breakdown by Industry in NY State, 1975"  width="579" height="461.4">
+        </p>
+        <p >
+        </p>
+      </div>
+      </div>
+
+      <p id="comment"> <a href="../index.html">return to assignments page.</a> </p>
+      </body>
+      </html>

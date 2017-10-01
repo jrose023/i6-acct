@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Machine-Level: 3</title>
+  <link rel="icon"  href="images/favicon.ico">
+
+  <!-- Media query for narrow browser width -->
+  <link rel="stylesheet" media="only screen and (max-width: 550px)" href="styles/mobile.css">
+
+  <!-- Media query for medium browser width -->
+  <link rel="stylesheet" media="only screen and (min-width: 551px) and (max-width: 1110px)" href="styles/tablet.css">
+
+  <!-- Media query for full browser width -->
+  <link rel="stylesheet" media="only screen and (min-width: 1111px)" href="styles/desktop.css">
+
+  <!-- Prevent smartphones from scaling pages down -->
+  <meta name="viewport" content="initial-scale=1">
+</head>
+
+<body>
+  <div id="container">
+
+    <div id="nav">
+      <a href="index.html">
+        <img src="images/i7.gif" id="chip" alt="i7 chip" width="200" height="175">
+        <ul class="navlist">
+          <li>Home</a>  </li>
+          <li><a href="l12.html">Levels 1/2</a></li>
+          <em><li><a href="l3.html">Level 3</a></li></em>
+          <li><a href="l4.html">Level 4</a></li>
+          <li><a href="l5.html">Level 5</a></li>
+          <li class ="footer"> <a href="../index.html"> back to projects page </a></li>
+        </ul>
+      </div >     <!-- close #nav -->
+      <div id="info">
+        <div class="about">
+          <h1><a href="index.html">Machine-Level Representation of Programs</a></h1> <button id="night"></button>
+          <h2>Level 3 </h2>
+          <p>This page details the implementation of loops in assembly: Do-while, while and For loops each can be represented in machine level using the instructions covered in the previous section. An expansion on jumps, switch statements involve jumping between several conditions.</p>
+        </div>       <!-- close .about  -->
+
+        <hr>
+        <div class="details">
+          <div class="col1">
+            <h3>Do-While Loops</h3>
+            <p> The general do-while conversion executes the Body of the code, then checks the condition at the While(Test) statement after. The Goto version of do-while loops indicates a "loop" section, exectures body, checks if(Test), then conditionally jumps back to "loop."</p>
+            <img src="images/dowhile.png" srcset="images/dowhile-2x.png 2x" alt="Do While Loop" width="622" height="229" class="boximage">
+
+            <h3> While Loops </h3>
+            <p>One formula for a while loop is the "jump-to-middle" translation. it tests While(Test) then executes the body. In terms of Goto, the code jumps to "test" which if(Test) jumps to "loop" which either exits or it executes the body, then returns back at "test" again.</p>
+            <p>Another general formula converts the while loop to a do-while loop, then to a goto version. The code first tests if(!Test) and either exits or executes the "do", which completes the body until While(Test) is done. </p>
+          </div>
+          <div class="col2">
+            <h3>For Loops</h3>
+            <p>For Loops are of the form for(Init; Test; Update), and completes the body a set number of iterations. For loops are converted into while loops where the Init is set beforehand, while(Test) is checked, then the Body and Update execute for the proper number of iterations.</p>
+
+            <h3>Switch Statements</h3>
+            <p>Switches can include multiple case labels, where one is left blank so it skips to the following case(5 & 6), where casses fall through without a break (2), or where cases are entirely missing (4).</p>
+            <p>Table Structure: Each target requires 8 bytes – Base address at .L4</p>
+            <p>Jumping can be direct (jmp .L8) or indirect (jmp *.L4(,%rdi, 8)). The indirect jump starts the table at .L4 as is convention, then scales by factor of 8-byte address size</p>
+            <img src="images/switch.png" srcset="images/switch-2x.png 2x" alt="Switch table" width="758" height="453" class="wideimage">
+          </div>
+        </div>      <!-- close .details -->
+      </div>   <!-- close #info -->
+    </div>   <!-- close #container -->
+
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jq.js"></script>
+  </body>
+  </html>

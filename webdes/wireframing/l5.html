@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Machine-Level: 5</title>
+  <link rel="icon"  href="images/favicon.ico">
+
+    <!-- Media query for narrow browser width -->
+    <link rel="stylesheet" media="only screen and (max-width: 480px)" href="stlyes/mobile.css">
+
+    <!-- Media query for medium browser width -->
+    <link rel="stylesheet" media="only screen and (min-width: 481px) and (max-width: 1110px)" href="styles/tablet.css">
+
+    <!-- Media query for full browser width -->
+    <link rel="stylesheet" media="only screen and (min-width: 1111px)" href="styles/desktop.css">
+
+    <!-- Prevent smartphones from scaling pages down -->
+    <meta name="viewport" content="initial-scale=1">
+</head>
+
+<body>
+  <div id="container">
+
+    <div id="nav">
+      <a href="index.html">
+      <img src="images/i7.gif" id="chip" alt="i7 chip" width="200" height="175">
+      <ul class="navlist">
+        <li>Home</a>  </li>
+        <li><a href="l12.html">Levels 1/2</a></li>
+        <li><a href="l3.html">Level 3</a></li>
+        <li><a href="l4.html">Level 4</a></li>
+        <em><li><a href="l5.html">Level 5</a></li></em>
+        <li class ="footer"> <a href="../index.html"> back to projects page </a></li>
+      </ul>
+    </div >     <!-- close #nav -->
+
+    <div id="info">
+      <div class="about">
+        <h1><a href="index.html">Machine-Level Representation of Programs</a></h1>
+        <h2>Level 5 </h2>
+        <div class="col1">
+          <p>Finally we discuss how data is maninpulated in assembly. For instance, how data structures like arrays are represented without special data types. With the representation of a series of values, the discussion of alignment becomes relevant when accessing memory. This leads us to a final topic of general Linux memory layout as well</p>
+
+        </div>      <!-- close .col1 -->
+
+
+      </div>       <!-- close .about  -->
+
+      <hr>
+      <div class="details">
+        <div class="col1">
+          <h3>Array Allocation and Access</h3>
+          <p> Basic Principle: <em> T A[L] </em> represents an array of data type T and length L that is contiguously allocated region of <em>L * sizeof(T)</em> bytes in memory. The identifier A is used as a pointer to array element 0: Type T*</p>
+          <p> In general, register %rdi contains starting address of array, register %rsi contains array index, the desired digit is stored at at 4*%rdi + %rsi, and we use memory reference (%rdi,%rsi,4).
+
+          <h3> Multidimensional (Nested) Arrays </h3>
+          <p>Declaration looks like: </p> <p><em>T A[R][C]</em>,</p> <p> which represents a 2D array of data type T containing R rows and C columns where the type T element requires K bytes. Thus the array size is calculated by </p><p><em> R * C * K</em></p><p> and the arrangement is done in a row-major order. </p>
+          <img src="images/array.png" alt="multi-dimensional array" width="338" height="186" class="boximage">
+          <img src="images/array2.png" alt="multi-dimensional array 2" width="679" height="153" class="wideimage">
+          <p>Array elements are accessed by: <em> A[i][j] </em>, which is an element of type T and requires K bytes. Its address is calculated by: </p><p><em> A + i * (C * K) + j * K = A + (i * C + j)* K</em></p>
+          <img src="images/array3.png" alt="multi-dimensional array 3" width="679" height="253" class="wideimage">
+          <p>In general, element access in a multi-level array is given by: <em>Mem[Mem[univ+8*index]+4*digit]</em>, which means that two memory reads must be performed; first to get pointer to row array, and second to then access element within array.</p>
+        </div>
+        <div class="col2">
+          <h3>Structure Representation</h3>
+          <p>Structures represented as block of memory that is big enough to hold all of the fields, which are ordered according to declaration even if another ordering could yield a more compact representation. The compiler determines overall size and positions of fields, but the machine-level program has no understanding of the structures in the source code.</p>
+          <p>Generating pointer to array element is done by an offset of each structure member determined at compile time then computed as <em>r + 4*idx</em></p>
+
+          <h3>Alignment</h3>
+          <p>Alignment is used on primitive data type requiring K bytes, where the address must be multiple of K. Alignment is required on some machines but advised on x86-64. The motivation for aligning data is for memory accessed by (aligned) chunks of 4 or 8 bytes (system dependent), and because it is inefficient to load or store datum that spans quad word boundaries. The compiler inserts gaps in structure to ensure correct alignment of fields</p>
+          <img src="images/unaligned.png" alt="unaligned data" width="465" height="68" class="wideimage">
+          <p>Above is a representation of a structure containing a char <em>c</em>, an array <em>i[2]</em>, a double <em>v</em> and a pointer <em>*p</em>. Below is its representation aligned, where the address must be a multiple of K, the primitive data type of K bytes.</p>
+          <img src="images/aligned.png" alt="aligned data" width="684" height="178" class="wideimage">
+          <p>Within a structure, we must satisfy each element's alignment requirement. The overall structure placement has an alignment requirement of K = the largest alignment of any element. The initial address andstructure length must be multiples of K. </p>
+
+          <h3>Memory Layout</h3>
+          <p>x86-64 Linux memory layout conisists of the Stack at runtime with an 8mb limit; the Heap dynamically allocated as needed by malloc, calloc, etc.; Data which is statically allocated (e.g. global var, static vars, string constants); and Text and Shared Libraries, which are executable, read-only machine instructions</p>
+          <img src="images/memory.png" alt="memory layout" width="184" height="455" class="tallimage" style="height: 50%; width:auto">
+        </div>
+      </div>      <!-- close .details -->
+    </div>   <!-- close #info -->
+  </div>   <!-- close #container -->
+
+</body>
+</html>

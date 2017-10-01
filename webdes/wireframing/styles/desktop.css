@@ -1,0 +1,128 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline');
+
+
+/* Import the tablet.css stylesheet */
+@import "tablet.css";
+
+#nav {
+  clear: both;
+  width: 9%;
+  height: 100%;
+  position: fixed;
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+#info {
+  clear: both;
+  margin-left: 9%;
+  width: 90%;
+  /*padding-left: 50px;*/
+}
+#container{
+  clear: both;
+  padding: 0;
+  margin-left: auto;
+}
+
+/* navigation panel */
+
+#chip {
+  width: 100%;
+  height: auto;
+}
+
+.navlist {
+    list-style-type: none;
+    font-weight: bold;
+    padding: 10px;
+    padding-top: 0;
+    line-height: 1.5em;
+}
+li a{
+  display: block;
+  width: 100%;
+  font-weight: bolder;
+  padding: 0;
+}
+
+.footer{
+  position: fixed;
+  bottom: 35px;
+  font-size: .75em;
+  line-height: 1.2em;
+  width: 100px;
+  overflow: auto;
+}
+
+
+/* info */
+
+.about {
+  margin-bottom: 130px;
+}
+.wideimage{
+  width: 100%;
+  height: auto;
+}
+.boximage{
+  width: 75%;
+  height: auto;
+}
+.tallimage {
+  width: 50%;
+  height: auto;
+}
+.col2, .col1{
+  width: 40%;
+  float:left;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  /*position: relative;;*/
+  /*padding-left: 20px;*/
+}
+
+hr {
+  clear: both;
+}
+
+
+/* Text */
+#nav{
+  font-size: 1.1em;
+}
+
+h1, h2, h3, #title, #nav{
+  font-family: 'Bungee Inline', monospace, Helvetica, sans-serif;
+  font-size: 1.3em;
+  font-stretch: ultra-condensed;
+}
+h2{
+  font-size: 1.5em;
+}
+
+
+p, .details{
+  font-family: Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: .9em;
+  line-height: 1.3em;
+}
+
+a:link{
+  color: #44AD9E;
+  text-decoration: none
+}
+a:visited{
+  color: #42C5B5;
+  text-decoration: none
+}
+a:hover {
+  color: #007264;
+  text-decoration: none
+}
+a:active{
+  color: black;
+  text-decoration: none;
+}

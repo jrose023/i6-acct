@@ -1,0 +1,43 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Bungee+Inline');
+
+@import "tablet.css";
+
+/*basic structure */
+
+#nav {
+  clear: both;
+  width: 10%;
+  height: 100%;
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+#info {
+  clear: both;
+  margin-left: 10%;
+  width: 90%;
+}
+#container{
+  clear: both;
+  padding: 0;
+  margin-left: auto;
+}
+
+
+/* navigation panel */
+
+#chip {
+  width: 100%;
+  height: auto;
+}
+li a{
+  width: 100%;
+  padding: 0;
+}
+.footer{
+  position: fixed;
+  bottom: 35px;
+  line-height: 1.2em;
+  width: 100px;
+}

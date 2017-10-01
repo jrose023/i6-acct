@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Machine-Level: 1-2</title>
+  <link rel="icon"  href="images/favicon.ico">
+
+
+    <!-- Media query for narrow browser width -->
+    <link rel="stylesheet" media="only screen and (max-width: 550px)" href="styles/mobile.css">
+
+    <!-- Media query for medium browser width -->
+    <link rel="stylesheet" media="only screen and (min-width: 551px) and (max-width: 1110px)" href="styles/tablet.css">
+
+    <!-- Media query for full browser width -->
+    <link rel="stylesheet" media="only screen and (min-width: 1111px)" href="styles/desktop.css">
+
+    <!-- Prevent smartphones from scaling pages down -->
+    <meta name="viewport" content="initial-scale=1">
+</head>
+
+<body>
+  <div id="container">
+
+    <div id="nav">
+      <a href="index.html">
+      <img src="images/i7.gif" id="chip" alt="i7 chip" width="200" height="175">
+      <ul class="navlist">
+        <li>Home</a>  </li>
+        <em><li><a href="l12.html">Levels 1/2</a></li></em>
+        <li><a href="l3.html">Level 3</a></li>
+        <li><a href="l4.html">Level 4</a></li>
+        <li><a href="l5.html">Level 5</a></li>
+        <li class ="footer"> <a href="../index.html"> back to projects page </a></li>
+      </ul>
+    </div >     <!-- close #nav -->
+
+    <div id="info">
+      <div class="about">
+        <h1><a href="index.html">Machine-Level Representation of Programs</a></h1><button id="night"></button>
+        <h2>Levels 1 and 2 </h2>
+          <p>This page covers the basics of assembly, like data types, compiling in the termnial, register usage in x86-64, memory addressing, basic instructions, arithmetic and logic instructions, control instructions and condition codes.</p>
+      </div>       <!-- close .about  -->
+
+      <hr>
+      <div class="details">
+        <div class="col1">
+          <h3>Basics</h3>
+          <p> The basic components of exectution are the PC, or Program Counter, which contains the address of the next instruction, the Registers, which are for program data, and Condition Code Registers, which store arithmetic/logical operations. The other focal point in understanding assembly is understanding the memory, which is designed as a byte-addressable array that stores code and user data along with stacks to support procedure calls.</p>
+          <p>There are few assembly data types to understand: "Integer" data of 1, 2, or 4 bytes to represent either a data value or address; Floating point data of 4, 8, or 10 bytes; and Code, which is comprised of byte sequences encoding the instructions themselves. Arrays and Stuctures do not have their own data type and are represented through the aforementioned types.</p>
+          <p>There are three types of operations in Assembly: performing arithmetic on register/memory data; transferring data between memory and register (load form memory to register or store register into memory); and transferring control between different sections of code, i.e. conditional jumps.</p>
+          <p> To generate assembly from an executable file: objdump –d file </p>
+
+          <h3> x86-64 Integer Registers </h3>
+          <img src="images/registers.png"  srcset="images/registers-2x.png 2x"alt="registers" width="630" height="400" class="boximage">
+
+          <h3>Moving Data:</h3>
+          <p>The <em>mov src, dest</em> instruction allows moves with immediate interger data, register data, and memory addresses. Immediate data can move to registers or memory. Register data can move between registers and memory, and memory can only move to registers, and not to itself.</p>
+          <p>Basic memory addressing occurs in the following way: </p><p>Mem[ Reg[R] + D], </p><p>where D is displacement that is added to the address of the current register in question. The most general formula for a memory addres is</p><p> D ( Rb, Ri, S ),</p><p> where S is the scale by which the index register is multiplied. </p>
+          <p>The <em>leaq src, dest</em> instruction computes memory addresses without memory access, which can be useful in simple arithmetic expressions of the form x + k*y. In this instruction <em>src</em> is the address mode expression mentioned above, and <em>dest</em> is set to the address calculated.</p>
+        </div>
+
+        <div class="col2">
+          <h3>Arithmetic Operations</h3>
+          <img src="images/operations.png" srcset="images/operations-2x.png 2x" alt="operations.png" width="577" height="395" class="boximage">
+          <p>Multiplication, division, and bit shifts can be done with one or two operands, where in the one operand instruction, the "hidden" operand is %rax for multiplication and division, and 1 for shifts. </p>
+          <p><em>cqto</em> is an instuction that takes no operands and simply sign extends from %rax and replications in %rdx.</p>
+
+          <h3>Control</h3>
+          <p>Condition codes can be set implicitly through arithmetic operations where t is the result of actions done on operands a and b </p>
+          <ul>
+            <li>Carry Flag set if carry out from MS bit </li>
+            <li>Zero Flag set if t == 0</li>
+            <li>Sign Flag set if t < 0 (as signed)</li>
+            <li>Overflow Flag set if signed overflow occurs: (a>0 and b>0 and t<0) or (a<0 and b<0 and t>=0)</li>
+          </ul>
+          <p><em>cmpl b, a</em> and <em>test b, a</em> instructions explicity set condition flags. Compare uses subtraction, and Test uses logical and.</p>
+          <p>The most common use of condition codes is to represent jumps in code. Jump instuctions are shown below. Another, the Indirect Jump, is expressed <em> jmp * op</em>, where the operand is a register or memory address.</p>
+          <img src="images/jumps.png"  srcset="images/jumps-2x.png 2x"alt="jumps.png" width="613" height="393" class="boximage">
+        </div>
+      </div>      <!-- close .details -->
+    </div>   <!-- close #info -->
+  </div>   <!-- close #container -->
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/jq.js"></script>
+</body>
+</html>
