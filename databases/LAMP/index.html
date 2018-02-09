@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf.8">
+  <title>LAMP</title>
+  <link rel="stylesheet" href="../main.css">
+</head>
+
+<body>
+  <h3 class="fixed">LAMP Assignment</a></h3>
+  <div id="container">
+    <div id="header">
+      <h2> Assignment 7: A LAMP Website for MySQL Data </h2>
+
+      <div id="bio">
+        <h4>Data Source and Description: </h4>
+        <p>
+          I retrieved this dataset on <a href = "https://data.cityofnewyork.us/Recreation/NYC-Parks-Monuments/6rrm-vxj9">NYC Park Monuments</a> from NYC Open Data. The original dataset includes lots of metadata about each monument, including a descriptive location (cross-streets), materials, overseeing committees, inscriptions, etc. For the purposes of this class, I extracted only the parks data from the webpage, and scrubbed duplicate and bad entries using Excel, as I only needed two columns of the original 50+. For the images and links of the monuments, I did the tedious research myself, and thus limited the monument count to the required 12.
+        </p>
+      </div>
+      <div id="bio">
+        <h4>Design Discussion: </h4>
+        <p>
+          This database is designed to ideally offer a easily-navigable look at the monuments in New York City, organized by borough and park. A user would be able to find all the monuments that reside in NYC parks in a given borough. With more data input into the database, a user would be able to see all the momuments in a given park, not just borough. The purpose of this database would be to provide a view into the history of New York City and the people and events that have shaped it. Ideally users could also input information about a monument to be reviewed and added to the database, to expand the knowledge base. This would come in handy in the case of the bust of Jacob Riis: while this bust existed in the original dataset on which I based my database, the description only stated that it was stolen in 1964. In 2012, however, a group of school children helped in the funding, creation and installation of a new bust. (Select "Queens" below!)
+
+        </p>
+      </div>
+    </div>
+    <!-- form will ask given a borough,what are all the parks or mouments in that borough -->
+    <!--
+    SELECT m.mon_img, m.mon_name, p.park_name, b.boro_name, m.mon_url
+    FROM monuments m
+    INNER JOIN parks p ON m.mon_park = p.park_name
+    INNER JOIN boroughs b ON p.park_boro = b.boro_name
+    ORDER BY m.mon_name;
+
+    -->
+
+    <div id="info">
+      <form method="POST" action="part3_results.py" >
+
+        <h3>Select borough:</h3>
+        <select name="boro" >
+          <option value=' ' >See All Boroughs</option>
+          <option value='WHERE b.boro_name = "the Bronx"'>Bronx</option>
+          <option value='WHERE b.boro_name = "Brooklyn"'>Brooklyn</option>
+          <option value='WHERE b.boro_name = "Manhattan"'>Manhattan</option>
+          <option value='WHERE b.boro_name = "Staten Isl"'>Staten Island</option>
+          <option value='WHERE b.boro_name = "Queens"'>Queens</option>
+        </select>
+
+        <h3>Select an ordering:</h3>
+        <input type="radio" id="1" name="order" value="m.mon_name" checked>
+        <label for="1">A-Z by Monument</label><br>
+        <input type="radio" id="2" name="order" value="p.park_name">
+        <label for="2">A-Z by Park name</label><br>
+
+        <p></p>
+        <input type="submit" value="Submit">
+        <input type="reset"  value="Cancel">
+
+      </form>
+    </div>
+  </div>
+
+  <p id="comment"> <a href="../index.html">return to assignments page.</a> </p>
+</body>
+</html>
